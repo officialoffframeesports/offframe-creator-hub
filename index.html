@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b16">
+  <title>OFFFRAME Creator Hub</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080b16;
+      --panel: #11182a;
+      --text: #f4f7ff;
+      --muted: #a7b0c7;
+      --red: #ff304f;
+      --blue: #287bff;
+      --border: #26314b;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    header {
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      background: #0b1020;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 23px;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--red);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    nav button, .secondary {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: white;
+      padding: 9px 13px;
+      border-radius: 8px;
+    }
+
+    .hero {
+      padding: 75px 6% 55px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 15% 20%, #a51d392e, transparent 45%),
+        radial-gradient(ellipse at 85% 20%, #1769d72e, transparent 45%);
+    }
+
+    .tag {
+      color: #ff7185;
+      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 8vw, 70px);
+      line-height: 1.1;
+      margin: 18px 0;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #ff304f, #4d91ff);
+      color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    .primary {
+      border: 0;
+      padding: 12px 19px;
+      border-radius: 9px;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(100deg, var(--red), #694cff);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 35px 5%;
+    }
+
+    section {
+      margin-bottom: 42px;
+      scroll-margin-top: 20px;
+    }
+
+    .section-title {
+      font-size: 27px;
+      margin-bottom: 7px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      margin: 10px 0;
+      border-radius: 30px;
+      background: #1c2942;
+      color: #8eb8ff;
+      font-size: 12px;
+    }
+
+    .form-box {
+      max-width: 580px;
+      margin-top: 18px;
+    }
+
+    .field {
+      margin: 14px 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      color: white;
+      background: #090f1e;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--blue);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .notice {
+      padding: 13px;
+      background: #211b2c;
+      border: 1px solid #514064;
+      color: #e4d9ff;
+      border-radius: 9px;
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .stat {
+      padding: 16px;
+      background: #0b1120;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      font-size: 24px;
+      display: block;
+    }
+
+    footer {
+      padding: 28px 6%;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    a {
+      color: #8eb8ff;
+    }
+
+    @media (max-width: 520px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav button {
+        padding: 8px 10px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">OFFFRAME <span>CREATOR HUB</span></div>
+
+    <nav>
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('program')">Program</button>
+      <button onclick="showSection('missions')">Missions</button>
+      <button onclick="showSection('dashboard')">Dashboard</button>
+      <button onclick="showSection('account')">Join / Login</button>
+    </nav>
+  </header>
+
+  <div class="hero" id="home">
+    <div class="tag">CREATE • PLAY • GROW</div>
+    <h1>Your Gaming.<br><span>Your Identity.</span></h1>
+    <p>
+      OFFFRAME Creator Hub में अपने gaming content, creator journey
+      और community achievements को एक जगह व्यवस्थित करने का लक्ष्य।
+    </p>
+    <button class="primary" onclick="showSection('program')">
+      Explore Creator Program
+    </button>
+    <button class="secondary" onclick="showSection('account')">
+      Get Started
+    </button>
+  </div>
+
+  <main>
+    <section id="program">
+      <h2 class="section-title">Creator Program</h2>
+      <p class="muted">
+        Gaming creators के लिए missions, performance tracking और
+        आगे चलकर rewards की व्यवस्था।
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🎮</div>
+          <h3>Gaming Creators</h3>
+          <p class="muted">Gameplay videos, reels और livestream content के लिए।</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🏆</div>
+          <h3>Rank System</h3>
+          <p class="muted">Bronze, Silver, Gold और Diamond जैसे creator ranks।</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">📈</div>
+          <h3>Creator Growth</h3>
+          <p class="muted">Missions और achievements के माध्यम से प्रगति ट्रैक करने की योजना।</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎁</div>
+          <h3>Rewards</h3>
+          <p class="muted">भविष्य में पात्र creators के लिए Owner द्वारा निर्धारित rewards।</p>
+        </article>
+      </div>
+
+      <div class="notice">
+        ध्यान दें: यह शुरुआती demo है। यहाँ दिखाए गए ranks, points,
+        missions या rewards वास्तविक सर्वर डेटा से जुड़े नहीं हैं।
+      </div>
+    </section>
+
+    <section id="missions">
+      <h2 class="section-title">Creator Missions</h2>
+      <p class="muted">आगे चलकर वास्तविक missions सर्वर से लोड होंगे। अभी ये उदाहरण हैं।</p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="pill">VIDEO</span>
+          <h3>Gaming Video</h3>
+          <p class="muted">अपना gaming video प्रकाशित करें और समीक्षा के लिए जमा करें।</p>
+        </article>
+
+        <article class="card">
+          <span class="pill">SHORTS / REELS</span>
+          <h3>Short-form Content</h3>
+          <p class="muted">Gameplay highlights या original gaming reel बनाएँ।</p>
+        </article>
+
+        <article class="card">
+          <span class="pill">COMMUNITY</span>
+          <h3>Community Activity</h3>
+          <p class="muted">OFFFRAME community में उपयोगी योगदान दें।</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <h2 class="section-title">Creator Dashboard</h2>
+      <p class="muted">यह केवल preview है, वास्तविक account dashboard नहीं।</p>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="muted">Creator Points</span>
+          <strong>0</strong>
+        </div>
+        <div class="stat">
+          <span class="muted">Current Rank</span>
+          <strong>Bronze</strong>
+        </div>
+        <div class="stat">
+          <span class="muted">Missions Completed</span>
+          <strong>0</strong>
+        </div>
+        <div class="stat">
+          <span class="muted">Rewards</span>
+          <strong>—</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Creator Application Status</h3>
+        <p class="muted">अभी कोई वास्तविक आवेदन जमा नहीं हुआ है।</p>
+        <span class="pill">DEMO ONLY</span>
+      </div>
+    </section>
+
+    <section id="account">
+      <h2 class="section-title">Join OFFFRAME Creator Hub</h2>
+      <p class="muted">
+        नीचे दिया गया फॉर्म केवल UI demo है। यह account नहीं बनाता
+        और न ही आपका डेटा किसी सर्वर पर भेजता है।
+      </p>
+
+      <div class="form-box card">
+        <div class="field">
+          <label for="creatorName">Creator Name</label>
+          <input id="creatorName" maxlength="50" placeholder="अपना creator name">
+        </div>
+
+        <div class="field">
+          <label for="creatorEmail">Email</label>
+          <input id="creatorEmail" type="email" placeholder="you@example.com">
+        </div>
+
+        <div class="field">
+          <label for="game">Main Game</label>
+          <select id="game">
+            <option value="">Game चुनें</option>
+            <option>Free Fire MAX</option>
+            <option>BGMI</option>
+            <option>Call of Duty Mobile</option>
+            <option>Valorant</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="social">YouTube / Instagram Profile Link</label>
+          <input id="social" type="url" placeholder="https://...">
+        </div>
+
+        <div class="field">
+          <label for="inviteCode">Invitation Code</label>
+          <input id="inviteCode" maxlength="100" placeholder="Owner से मिला code">
+        </div>
+
+        <button class="primary" onclick="demoSubmit()">Preview Application</button>
+        <button class="secondary" onclick="clearForm()">Clear</button>
+
+        <div id="formMessage" class="notice hidden" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="rules">
+      <h2 class="section-title">Rules & Privacy</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Creator Rules</h3>
+          <p class="muted">
+            Original content बनाएँ। नकली engagement, धोखाधड़ी और
+            गलत जानकारी से बचें। अंतिम नियम प्रकाशित होने बाकी हैं।
+          </p>
+        </article>
+        <article class="card">
+          <h3>Privacy</h3>
+          <p class="muted">
+            Production launch से पहले वास्तविक Privacy Policy,
+            Terms, data deletion प्रक्रिया और संपर्क विवरण जोड़ना आवश्यक है।
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>OFFFRAME Creator Hub</strong></div>
+    <p>Independent gaming creator community concept.</p>
+    <p>© <span id="year"></span> OFFFRAME</p>
+  </footer>
+
+  <script>
+    "use strict";
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function showSection(id) {
+      const target = document.getElementById(id);
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    function demoSubmit() {
+      const name = document.getElementById("creatorName").value.trim();
+      const email = document.getElementById("creatorEmail").value.trim();
+      const game = document.getElementById("game").value;
+      const social = document.getElementById("social").value.trim();
+      const code = document.getElementById("inviteCode").value.trim();
+      const message = document.getElementById("formMessage");
+
+      message.classList.remove("hidden");
+
+      if (!name || !email || !game || !social || !code) {
+        message.textContent =
+          "Demo: सभी fields भरें। कोई जानकारी सर्वर पर जमा नहीं हुई है।";
+        return;
+      }
+
+      try {
+        const parsed = new URL(social);
+        if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+          throw new Error("Invalid URL");
+        }
+      } catch {
+        message.textContent =
+          "Profile link सही URL होना चाहिए, जैसे https://example.com";
+        return;
+      }
+
+      message.textContent =
+        "Demo सफल: फॉर्म की जानकारी जाँच ली गई है। वास्तविक आवेदन, " +
+        "invitation code verification और account creation अभी जुड़े नहीं हैं।";
+    }
+
+    function clearForm() {
+      document.getElementById("creatorName").value = "";
+      document.getElementById("creatorEmail").value = "";
+      document.getElementById("game").value = "";
+      document.getElementById("social").value = "";
+      document.getElementById("inviteCode").value = "";
+
+      const message = document.getElementById("formMessage");
+      message.textContent = "";
+      message.classList.add("hidden");
+    }
+  </script>
+</body>
+</html>
+  
